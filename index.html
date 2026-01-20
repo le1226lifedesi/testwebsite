@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合同会社ライフデザイナーズ | マンガ・アニメ制作</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+            line-height: 1.7;
+            color: #333;
+        }
+        
+        /* ヘッダー */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.7;
+        }
+        
+        /* ヒーローセクション */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+        
+        /* セクション共通 */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+        
+        /* サービス */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        /* 実績 */
+        #works {
+            background: #f8f9fa;
+        }
+        
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .work-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .work-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .work-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .work-content {
+            padding: 1.5rem;
+        }
+        
+        .work-category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: #e9ecef;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 強み */
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .strength-item {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .strength-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        /* 制作フロー */
+        #flow {
+            background: #f8f9fa;
+        }
+        
+        .flow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .flow-step {
+            display: flex;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        .step-number {
+            min-width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #667eea;
+        }
+        
+        /* 会社情報 */
+        .company-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .info-table {
+            width: 100%;
+        }
+        
+        .info-table tr {
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .info-table th {
+            padding: 1rem;
+            text-align: left;
+            width: 150px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .info-table td {
+            padding: 1rem;
+        }
+        
+        /* お問い合わせ */
+        #contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        #contact .section-title::after {
+            background: white;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .submit-btn {
+            background: white;
+            color: #667eea;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* フッター */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .flow-step {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <nav>
+            <div class="logo">ライフデザイナーズ</div>
+            <ul>
+                <li><a href="#services">サービス</a></li>
+                <li><a href="#works">実績</a></li>
+                <li><a href="#flow">制作フロー</a></li>
+                <li><a href="#company">会社概要</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ヒーロー -->
+    <section class="hero">
+        <h1>想いを形に、物語を世界へ</h1>
+        <p>マンガ・アニメ制作で、あなたのビジョンを実現します</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">お問い合わせ</a>
+            <a href="#works" class="btn btn-secondary">制作実績を見る</a>
+        </div>
+    </section>
+
+    <!-- サービス -->
+    <section id="services">
+        <h2 class="section-title">サービス内容</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📚</div>
+                <h3>マンガ制作</h3>
+                <p>プロモーション漫画から連載作品まで、幅広いニーズに対応。読者の心に響く作品を創造します。</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎬</div>
+                <h3>アニメーション制作</h3>
+                <p>企画から撮影・編集まで一貫したアニメーション制作。高品質な映像でメッセージを伝えます。</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>イラスト制作</h3>
+                <p>キャラクターデザインからビジュアル広告まで、目を引くイラストを提供します。</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Web漫画・SNS展開</h3>
+                <p>デジタル媒体に最適化された漫画制作とSNSでの効果的な展開をサポート。</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👥</div>
+                <h3>採用・社内漫画</h3>
+                <p>企業の魅力を伝える採用漫画や、社内教育に活用できるコンテンツを制作。</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3>企画・コンサルティング</h3>
+                <p>制作だけでなく、効果的な活用方法まで含めた総合的なサポートを提供。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 実績 -->
+    <section id="works">
+        <h2 class="section-title">制作実績</h2>
+        <div class="works-grid">
+            <div class="work-item">
+                <div class="work-image">🏢</div>
+                <div class="work-content">
+                    <span class="work-category">プロモーション</span>
+                    <h3>企業PR漫画</h3>
+                    <p>商品・サービスの魅力を分かりやすく伝える漫画制作</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <div class="work-image">📖</div>
+                <div class="work-content">
+                    <span class="work-category">Web連載</span>
+                    <h3>オリジナル作品</h3>
+                    <p>SNSで話題となったオリジナルストーリー漫画</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <div class="work-image">🎥</div>
+                <div class="work-content">
+                    <span class="work-category">アニメーション</span>
+                    <h3>漫画動画</h3>
+                    <p>漫画を動画化し、より広い層へリーチ</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <div class="work-image">🏫</div>
+                <div class="work-content">
+                    <span class="work-category">教育</span>
+                    <h3>教育マニュアル</h3>
+                    <p>複雑な内容も理解しやすい教材漫画</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <div class="work-image">👨‍💼</div>
+                <div class="work-content">
+                    <span class="work-category">採用</span>
+                    <h3>採用活動支援</h3>
+                    <p>企業の魅力を伝える採用漫画で応募率向上</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <div class="work-image">📱</div>
+                <div class="work-content">
+                    <span class="work-category">SNS</span>
+                    <h3>SNS漫画連載</h3>
+                    <p>定期投稿でファンを獲得するSNS漫画</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 強み -->
+    <section id="strengths">
+        <h2 class="section-title">ライフデザイナーズの強み</h2>
+        <div class="strengths-grid">
+            <div class="strength-item">
+                <div class="strength-number">01</div>
+                <h3>豊富な実績</h3>
+                <p>多様な業界での制作実績により、あらゆるニーズに対応可能</p>
+            </div>
+            <div class="strength-item">
+                <div class="strength-number">02</div>
+                <h3>高品質</h3>
+                <p>経験豊富なクリエイターによる、プロフェッショナルな作品</p>
+            </div>
+            <div class="strength-item">
+                <div class="strength-number">03</div>
+                <h3>柔軟な対応</h3>
+                <p>予算や納期に合わせた最適なプランをご提案</p>
+            </div>
+            <div class="strength-item">
+                <div class="strength-number">04</div>
+                <h3>一貫サポート</h3>
+                <p>企画から納品、活用まで一貫したサポート体制</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 制作フロー -->
+    <section id="flow">
+        <h2 class="section-title">制作フロー</h2>
+        <div class="flow-steps">
+            <div class="flow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>お問い合わせ・ヒアリング</h3>
+                    <p>まずはお気軽にご相談ください。目的、ターゲット、予算などを詳しくお伺いします。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>企画・お見積り</h3>
+                    <p>ヒアリング内容を基に最適なプランをご提案。お見積りを提示いたします。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>シナリオ作成</h3>
+                    <p>ストーリーの骨組みとなるシナリオを作成。内容を確認いただき調整します。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>ネーム制作</h3>
+                    <p>コマ割りやセリフ配置を決定。作品の全体像が見えてきます。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>作画・仕上げ</h3>
+                    <p>線画、着色、仕上げを行い、作品を完成させます。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h3>納品・アフターフォロー</h3>
+                    <p>完成した作品を納品。二次利用や展開方法についてもサポートします。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 会社概要 -->
+    <section id="company">
+        <h2 class="section-title">会社概要</h2>
+        <div class="company-info">
+            <table class="info-table">
+                <tr>
+                    <th>会社名</th>
+                    <td>合同会社ライフデザイナーズ</td>
+                </tr>
+                <tr>
+                    <th>代表社員</th>
+                    <td>新城 敦</td>
+                </tr>
+                <tr>
+                    <th>設立</th>
+                    <td>2023年4月17日</td>
+                </tr>
+                <tr>
+                    <th>所在地</th>
+                    <td>〒650-0001<br>神戸市中央区中町通3-1-16-502</td>
+                </tr>
+                <tr>
+                    <th>事業内容</th>
+                    <td>
+                        ・マンガ制作<br>
+                        ・アニメーション制作<br>
+                        ・イラスト制作<br>
+                        ・企画・コンサルティング
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section id="contact">
+        <h2 class="section-title">お問い合わせ</h2>
+        <div class="contact-form">
+            <form>
+                <div class="form-group">
+                    <label for="name">お名前 *</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">メールアドレス *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">件名</label>
+                    <input type="text" id="subject">
+                </div>
+                <div class="form-group">
+                    <label for="message">お問い合わせ内容 *</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <div style="text-align: center;">
+                    <button type="submit" class="submit-btn">送信する</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <p>&copy; 2023-2026 合同会社ライフデザイナーズ All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // フォーム送信処理
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('お問い合わせありがとうございます。\n内容を確認次第、ご連絡させていただきます。');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
